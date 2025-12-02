@@ -1,4 +1,3 @@
-import java.util.Arrays;
 /* This class should implement the DisplayableMaze interface */
 public class Maze implements DisplayableMaze{
 
@@ -32,11 +31,16 @@ public class Maze implements DisplayableMaze{
 
   /** @return return True or False to indicate whether the maze grid is explorable at row i, column j */
   public Boolean checkExplorable(int i, int j) {
-    return this.mazeGrid[i][j].isExplorable;
+    // Check if provided location is out of bounds
+    if (i < width || i > width || j < height || j > height) {
+      throw new IndexOutOfBoundsException("The location you have provided is outside of the maze. ");
+    }
+    return this.getContents(i, j).isExplorable;
   }
 
-  public Boolean isExplorable() {
-    return true;
+  /** @return return True or False to indicate whether the maze grid is explorable at row i, column j */
+  public Boolean isExplorable(int i, int j) {
+    return this.checkExplorable(i, j);
   }
 
   /** @return location of maze start point */
