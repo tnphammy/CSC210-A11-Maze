@@ -35,6 +35,10 @@ public class Maze implements DisplayableMaze{
     return this.mazeGrid[i][j].isExplorable;
   }
 
+  public Boolean isExplorable() {
+    return true;
+  }
+
   /** @return location of maze start point */
   public MazeLocation getStart() {
     return this.start;
