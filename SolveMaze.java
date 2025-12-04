@@ -3,6 +3,57 @@ import java.util.Scanner;
 
 class SolveMaze {
 
+  /**
+   * Checks if a maze is able to be solved
+   * @param maze the given maze
+   * @return whether it can be solved
+   */
+  public static Boolean canSolve(Maze maze) {
+    // Call helper on start point
+    Boolean canBeSolved = canSolveHelper(maze, maze.getStart());
+    // Print message accordingly
+    if (canBeSolved) {
+      System.out.println("YES! This maze can be solved hehe congratulations!!");
+      return true;
+    }
+    else {
+      System.out.println("babe i'm so sorry you can't solve this one...");
+      return false;
+    }
+  }
+
+  /**
+   * Helper function for canSolve() which also takes a specific MazeLocation
+   * returns whether a solution can be found from that point
+   * @param maze the given maze
+   * @param loc the current location
+   * @return whether it can be solved from the location
+   */
+  public static Boolean canSolveHelper(Maze maze, MazeLocation loc) {
+    // Delay for animation
+    try { Thread.sleep(50);	} catch (InterruptedException e) {};
+    
+    // get coordinates
+    int i = loc.getRow();
+    int j = loc.getCol();
+
+    // Stop condition: FINISH or DEAD END
+    if (loc == maze.getFinish()) {
+      maze.mazeGrid[i][j] = MazeContents.PATH; /* record point in path */
+      return true;
+    }
+    else if (!maze.checkExplorable(i, j)) {
+      maze.mazeGrid[i][j] = MazeContents.DEAD_END; /* can't be explored */
+      return false;
+    }
+
+    // Recursive Step
+    maze.mazeGrid[i][j] = MazeContents.VISITED; /* mark point visited */
+    // explore loc's neighbors
+    return (canSolveHelper(maze, loc.neighbor(MazeDirection.NORTH)) || canSolveHelper(maze, loc.neighbor(MazeDirection.EAST)) || canSolveHelper(maze, loc.neighbor(MazeDirection.WEST)) || canSolveHelper(maze, loc.neighbor(MazeDirection.SOUTH)));
+
+  }
+
   public static Scanner readMaze(String fname){
     Scanner file = null;
     try {
@@ -21,7 +72,8 @@ class SolveMaze {
     }
     Scanner file = readMaze(args[0]);
     
-    // Maze maze = new Maze();
-    // MazeViewer viewer = new MazeViewer(maze);
+    Maze maze = new Maze();
+    MazeViewer viewer = new MazeViewer(maze);
+    canSolve(maze);
   }
 }
