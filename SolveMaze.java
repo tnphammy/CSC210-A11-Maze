@@ -102,6 +102,7 @@ class SolveMaze {
 
       // Configure mazeGrid 2D Array
       maze.mazeGrid = new MazeContents[height][width];
+      System.out.println("height: " + height + " width: " + width);
 
       // Fill out mazeGrid
       int i = 0; /* current row counter */
@@ -111,6 +112,7 @@ class SolveMaze {
         int j = 0; /* reset column counter */
         for (char c : row.toCharArray()) {
           // Checking property of each element
+          System.out.println("i: " + i + ", j: " + j + ". PROP: " + c);
           if (c == '#') {
             maze.mazeGrid[i][j] = MazeContents.WALL;
           } else if (c == '.' || c == ' ') {

@@ -32,8 +32,8 @@ public class Maze implements DisplayableMaze{
   /** @return return True or False to indicate whether the maze grid is explorable at row i, column j */
   public Boolean checkExplorable(int i, int j) {
     // Check if provided location is out of bounds
-    if (i < width || i > width || j < height || j > height) {
-      throw new IndexOutOfBoundsException("The location you have provided is outside of the maze. ");
+    if (i < 0 || i > width || j < 0 || j > height) {
+      throw new IndexOutOfBoundsException("The location you have provided " + i + ", " + j + " is outside of the maze. ");
     }
     return this.getContents(i, j).isExplorable;
   }
