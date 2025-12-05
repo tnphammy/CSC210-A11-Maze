@@ -32,7 +32,7 @@ class SolveMaze {
   public static Boolean canSolveHelper(Maze maze, MazeLocation loc) {
     // Delay for animation
     try { Thread.sleep(50);	} catch (InterruptedException e) {};
-    
+
     // get coordinates
     int i = loc.getRow();
     int j = loc.getCol();
@@ -54,6 +54,11 @@ class SolveMaze {
 
   }
 
+  /**
+   * Reads in a maze file in .txt format
+   * @param fname the file name
+   * @return the returned file
+   */
   public static Scanner readMaze(String fname){
     Scanner file = null;
     try {
@@ -64,6 +69,58 @@ class SolveMaze {
     }
     return file;
   }
+
+  /**
+   * Encode a file into a maze representation
+   * @param file the file
+   * @return the file in Maze form
+   */
+  public static Maze encodeMaze(Scanner file) {
+    Maze maze = new Maze();
+    try (file){
+      // Calculate maze height and width
+      Scanner scanner = file;
+      int height = 0;
+      int width = 0;
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+        height++;
+        width = line.length();
+      }
+      scanner.close();
+
+      maze.height = height;
+      maze.width = width;
+
+      // Fill out mazeGrid 
+      int i = 0; /* current row counter */
+      while (file.hasNextLine()) {
+        String row = file.nextLine();
+        int j = 0; /* reset column counter */
+        for (char c : row.toCharArray()) {
+          // Checking property of each element
+          if (c == '#') {
+            maze.mazeGrid[i][j] = MazeContents.WALL;
+          }
+          else if (c == '.' || c == ' ') {
+            maze.mazeGrid[i][j] = MazeContents.OPEN;
+          }
+          else if (c == 'S') {
+            maze.mazeGrid[i][j] = MazeContents.OPEN;
+            maze.start = new MazeLocation(i, j);
+          }
+          else if (c == 'F') {
+            maze.mazeGrid[i][j] = MazeContents.OPEN;
+            maze.finish = new MazeLocation(i, j);
+          }
+          j++; /* increment column */
+        }
+        i++; /* increment row */
+      }
+      return maze;
+    } 
+
+  }
   
   public static void main(String[] args) {
     if(args.length <= 0){
@@ -73,6 +130,7 @@ class SolveMaze {
     Scanner file = readMaze(args[0]);
     
     Maze maze = new Maze();
+    maze = encodeMaze(file);
     MazeViewer viewer = new MazeViewer(maze);
     canSolve(maze);
   }

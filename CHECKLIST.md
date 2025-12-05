@@ -10,7 +10,7 @@ your work, please indicate the status of each item
 
 ## Assignment Points:
 
-_____ 1 pt: Maze class implements DisplayableMaze interface
+YES 1 pt: Maze class implements DisplayableMaze interface
 
 _____ 2 pts: `solve` method correctly determines if solution exists
 
