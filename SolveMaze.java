@@ -68,7 +68,6 @@ class SolveMaze {
    * @return the returned file
    */
   public static Scanner readMaze(String fname) {
-    System.out.println("here");
     Scanner file = null;
     try {
       file = new Scanner(new File(fname));
@@ -82,13 +81,28 @@ class SolveMaze {
   /**
    * Encode a file into a maze representation
    * 
-   * @param file the file
+   * @param fname the file
    * @return the file in Maze form
    */
-  public static Maze encodeMaze(Scanner file) {
-    System.out.println("started");
+  public static Maze encodeMaze(String fname) {
     Maze maze = new Maze();
-    try {
+    try (Scanner file = readMaze(fname)) {
+      // Get height and width
+      Scanner calc = readMaze(fname);
+      int height = 0;
+      int width = 0;
+      while (calc.hasNextLine()) {
+        height++;
+        String line = calc.nextLine();
+        if (width == 0) {
+          width = line.length(); /* set column if not yet */
+        }
+      }
+      calc.close();
+
+      // Configure mazeGrid 2D Array
+      maze.mazeGrid = new MazeContents[height][width];
+
       // Fill out mazeGrid
       int i = 0; /* current row counter */
       while (file.hasNextLine()) {
@@ -109,16 +123,10 @@ class SolveMaze {
             maze.finish = new MazeLocation(i, j);
           }
           j++; /* increment column */
-          maze.width = j + 1;
         }
         i++; /* increment row */
       }
-
-      // Get height and width
-      maze.height = i + 1;
-    } finally {
-      file.close();
-    }
+    } 
     return maze;
 
   }
@@ -131,7 +139,7 @@ class SolveMaze {
     Scanner file = readMaze(args[0]);
 
     Maze maze = new Maze();
-    maze = encodeMaze(file);
+    maze = encodeMaze(args[0]);
     MazeViewer viewer = new MazeViewer(maze);
     canSolve(maze);
   }
