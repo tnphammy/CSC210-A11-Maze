@@ -100,19 +100,18 @@ class SolveMaze {
       }
       calc.close();
 
-      // Configure mazeGrid 2D Array
+      // Configure maze properties 
+      maze.height = height;
+      maze.width = width;
       maze.mazeGrid = new MazeContents[height][width];
-      System.out.println("height: " + height + " width: " + width);
 
       // Fill out mazeGrid
       int i = 0; /* current row counter */
       while (file.hasNextLine()) {
         String row = file.nextLine();
-        System.out.println("Row: " + row);
         int j = 0; /* reset column counter */
         for (char c : row.toCharArray()) {
           // Checking property of each element
-          System.out.println("i: " + i + ", j: " + j + ". PROP: " + c);
           if (c == '#') {
             maze.mazeGrid[i][j] = MazeContents.WALL;
           } else if (c == '.' || c == ' ') {
@@ -140,8 +139,7 @@ class SolveMaze {
     }
     Scanner file = readMaze(args[0]);
 
-    Maze maze = new Maze();
-    maze = encodeMaze(args[0]);
+    Maze maze = encodeMaze(args[0]);
     MazeViewer viewer = new MazeViewer(maze);
     canSolve(maze);
   }
