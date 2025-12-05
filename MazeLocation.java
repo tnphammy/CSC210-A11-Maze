@@ -1,5 +1,3 @@
-import java.awt.Point;
-
 /**
  *  Contains the information about a location in the maze,
  *  and its neighbors.
