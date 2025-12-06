@@ -47,7 +47,9 @@ class SolveMaze {
       maze.mazeGrid[i][j] = MazeContents.PATH; /* record point in path */
       return true;
     } else if (!maze.checkExplorable(i, j)) {
-      maze.mazeGrid[i][j] = MazeContents.DEAD_END; /* can't be explored */
+      if (!(maze.getContents(i, j) == MazeContents.WALL)) {
+        maze.mazeGrid[i][j] = MazeContents.DEAD_END; /* can't be explored */
+      }
       return false;
     }
 
