@@ -31,35 +31,43 @@ class SolveMaze {
    * @return whether it can be solved from the location
    */
   public static Boolean canSolveHelper(Maze maze, MazeLocation loc) {
-    // Delay for animation
-    try {
-      Thread.sleep(50);
-    } catch (InterruptedException e) {
-    }
-    ;
 
     // get coordinates
     int i = loc.getRow();
     int j = loc.getCol();
 
+
     // Stop condition: FINISH or DEAD END
-    if (loc == maze.getFinish()) {
+    if (loc.equals(maze.getFinish())) {
       maze.mazeGrid[i][j] = MazeContents.PATH; /* record point in path */
+      System.out.println("I FOUND ITTTT");
       return true;
-    } else if (!maze.checkExplorable(i, j)) {
-      if (!(maze.getContents(i, j) == MazeContents.WALL)) {
-        maze.mazeGrid[i][j] = MazeContents.DEAD_END; /* can't be explored */
-      }
+    } 
+    
+    // Check for permission to explore - mark accordingly
+    if (!(maze.checkExplorable(i, j))) {
+      return false;
+    } else {
+          // Delay for animation
+      try { Thread.sleep(50);} catch (InterruptedException e) {}
+      // Mark VISITED immediately
+      maze.mazeGrid[i][j] = MazeContents.VISITED; /* mark point visited */
+    }
+    
+    if (canSolveHelper(maze, loc.neighbor(MazeDirection.NORTH))
+      || canSolveHelper(maze, loc.neighbor(MazeDirection.EAST))
+      || canSolveHelper(maze, loc.neighbor(MazeDirection.WEST))
+      || canSolveHelper(maze, loc.neighbor(MazeDirection.SOUTH))) {
+        maze.mazeGrid[i][j] = MazeContents.PATH;
+
+    } 
+    else {
+      maze.mazeGrid[i][j] = MazeContents.DEAD_END;
       return false;
     }
 
-    // Recursive Step
-    maze.mazeGrid[i][j] = MazeContents.VISITED; /* mark point visited */
-    // explore loc's neighbors
-    return (canSolveHelper(maze, loc.neighbor(MazeDirection.NORTH))
-        || canSolveHelper(maze, loc.neighbor(MazeDirection.EAST))
-        || canSolveHelper(maze, loc.neighbor(MazeDirection.WEST))
-        || canSolveHelper(maze, loc.neighbor(MazeDirection.SOUTH)));
+    // Happi happi happi (has passed all the tests)
+    return true;
 
   }
 
@@ -135,13 +143,15 @@ class SolveMaze {
   }
 
   public static void main(String[] args) {
-    if (args.length <= 0) {
-      System.err.println("Please provide the name of the maze file.");
-      System.exit(-1);
-    }
-    Scanner file = readMaze(args[0]);
+    // if (args.length <= 0) {
+    //   System.err.println("Please provide the name of the maze file.");
+    //   System.exit(-1);
+    // }
+    //Scanner file = readMaze(args[0]);
+    Scanner file = readMaze("maze3");
 
-    Maze maze = encodeMaze(args[0]);
+    //Maze maze = encodeMaze(args[0]);
+    Maze maze = encodeMaze("maze3");
     MazeViewer viewer = new MazeViewer(maze);
     canSolve(maze);
   }
