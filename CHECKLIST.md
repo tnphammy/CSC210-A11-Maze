@@ -12,39 +12,39 @@ your work, please indicate the status of each item
 
 YES 1 pt: Maze class implements DisplayableMaze interface
 
-_____ 2 pts: `solve` method correctly determines if solution exists
+YES 2 pts: `solve` method correctly determines if solution exists
 
-_____ 2 pts: `solve` method uses recursion
+YES 2 pts: `solve` method uses recursion
 
-_____ 1 pts: `isExplorable` correctly identifies explorable locations
+YES 1 pts: `isExplorable` correctly identifies explorable locations
 
-_____ 1 pts: recursive style is simple and direct
+YES 1 pts: recursive style is simple and direct
 
-_____ 1 pts: Encodes maze contained in a text file
+YES 1 pts: Encodes maze contained in a text file
 
-_____ 1 pts: ShortestPath implements Dijkstra's algorithm to find the shortest path
+NO 1 pts: ShortestPath implements Dijkstra's algorithm to find the shortest path
 
-_____ 1 pts: Secondary storage for ShortestPath uses well-reasoned data structures
+NO 1 pts: Secondary storage for ShortestPath uses well-reasoned data structures
 
 
 ## General Items:
 
-_____ 4 pts: Program compiles without errors or warnings
+YES 4 pts: Program compiles without errors or warnings
 
-_____ 2 pts: Executes fully & consistently without crashing (exception/freeze)
+YES 2 pts: Executes fully & consistently without crashing (exception/freeze)
 
-_____ 2 pt: Complies with style guidelines (missing items 1 pt each):
+YES 2 pt: Complies with style guidelines (missing items 1 pt each):
 
-      _____ Classes & class members all have Javadoc header comments
+      YES Classes & class members all have Javadoc header comments
 
-      _____ Clear and consistent indentation of bracketed sections
+      YES Clear and consistent indentation of bracketed sections
 
-      _____ Adheres to Java conventions on naming & capitalization
+      YES Adheres to Java conventions on naming & capitalization
 
-      _____ Methods & variables all have clear and accurate names
+      YES Methods & variables all have clear and accurate names
 
-      _____ Methods avoid confusing side effects
+      ____YES_ Methods avoid confusing side effects
 
-_____ 1 pt: All required files included with submission & named correctly (including completed checklist file)
+YES 1 pt: All required files included with submission & named correctly (including completed checklist file)
 
-_____ 1 pt: readme.md contains reflection on the assignment
+NO 1 pt: readme.md contains reflection on the assignment
