@@ -126,6 +126,7 @@ class SolveMaze {
             maze.mazeGrid[i][j] = MazeContents.WALL;
           } else if (c == '.' || c == ' ') {
             maze.mazeGrid[i][j] = MazeContents.OPEN;
+            maze.openCells++;
           } else if (c == 'S') {
             maze.mazeGrid[i][j] = MazeContents.OPEN;
             maze.start = new MazeLocation(i, j);

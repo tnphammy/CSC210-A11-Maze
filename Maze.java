@@ -12,24 +12,30 @@ public class Maze implements DisplayableMaze{
   public MazeLocation start;
   /** The finishing coordinates of the maze */
   public MazeLocation finish;
+  /** The number of explorable cells in the 2D Array */
+  public int openCells;
 
   /** METHODS */
-  /** @return height of maze grid */
+  /** Gets the height of the mazeGrid
+   * @return height of mazeGrid */
   public int getHeight() {
     return height;
   }
 
-  /** @return width of maze grid */
+  /** Gets the width of maze grid
+   * @return width of maze grid */
   public int getWidth() {
     return width;
   }
 
-  /** @return contents of maze grid at row i, column j */
+  /** Gets the MazeContent of a certain cell
+   * @return contents of maze grid at row i, column j */
   public MazeContents getContents(int i, int j) {
     return this.mazeGrid[i][j];
   }
 
-  /** @return return True or False to indicate whether the maze grid is explorable at row i, column j */
+  /** Checks if a cell is explorable
+   * @return return True or False to indicate whether the maze grid is explorable at row i, column j */
   public Boolean checkExplorable(int i, int j) {
     // Check if provided location is out of bounds
     if (i < 0 || i >= this.getHeight() || j < 0 || j >= this.getWidth()) {
@@ -38,17 +44,20 @@ public class Maze implements DisplayableMaze{
     return this.getContents(i, j).isExplorable;
   }
 
-  /** @return return True or False to indicate whether the maze grid is explorable at row i, column j */
+  /** Checks if a cell is explorable
+   * @return return True or False to indicate whether the maze grid is explorable at row i, column j */
   public Boolean isExplorable(int i, int j) {
     return this.checkExplorable(i, j);
   }
 
-  /** @return location of maze start point */
+  /** Gets the starting location of the maze
+   * @return location of maze start point */
   public MazeLocation getStart() {
     return this.start;
   }
 
-  /** @return location of maze finish point */
+  /** Gets the finish location of the maze
+   * @return location of maze finish point */
   public MazeLocation getFinish() {
     return this.finish;
   }
