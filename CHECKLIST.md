@@ -22,9 +22,9 @@ YES 1 pts: recursive style is simple and direct
 
 YES 1 pts: Encodes maze contained in a text file
 
-NO 1 pts: ShortestPath implements Dijkstra's algorithm to find the shortest path
+YES 1 pts: ShortestPath implements Dijkstra's algorithm to find the shortest path
 
-NO 1 pts: Secondary storage for ShortestPath uses well-reasoned data structures
+YES 1 pts: Secondary storage for ShortestPath uses well-reasoned data structures
 
 
 ## General Items:
@@ -43,8 +43,8 @@ YES 2 pt: Complies with style guidelines (missing items 1 pt each):
 
       YES Methods & variables all have clear and accurate names
 
-      ____YES_ Methods avoid confusing side effects
+      YES Methods avoid confusing side effects
 
 YES 1 pt: All required files included with submission & named correctly (including completed checklist file)
 
-NO 1 pt: readme.md contains reflection on the assignment
+YES 1 pt: readme.md contains reflection on the assignment

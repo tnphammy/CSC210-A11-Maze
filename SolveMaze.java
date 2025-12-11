@@ -144,15 +144,15 @@ class SolveMaze {
   }
 
   public static void main(String[] args) {
-    // if (args.length <= 0) {
-    //   System.err.println("Please provide the name of the maze file.");
-    //   System.exit(-1);
-    // }
-    //Scanner file = readMaze(args[0]);
-    Scanner file = readMaze("maze3");
+    if (args.length <= 0) {
+      System.err.println("Please provide the name of the maze file.");
+      System.exit(-1);
+    }
+    Scanner file = readMaze(args[0]);
+    //Scanner file = readMaze("maze3");
 
-    //Maze maze = encodeMaze(args[0]);
-    Maze maze = encodeMaze("maze3");
+    Maze maze = encodeMaze(args[0]);
+    //Maze maze = encodeMaze("maze3");
     MazeViewer viewer = new MazeViewer(maze);
     canSolve(maze);
   }
