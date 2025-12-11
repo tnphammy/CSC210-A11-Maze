@@ -49,7 +49,7 @@ class SolveMaze {
       return false;
     } else {
           // Delay for animation
-      try { Thread.sleep(50);} catch (InterruptedException e) {}
+      try { Thread.sleep(9);} catch (InterruptedException e) {}
       // Mark VISITED immediately
       maze.mazeGrid[i][j] = MazeContents.VISITED; /* mark point visited */
     }
